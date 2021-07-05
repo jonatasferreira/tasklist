@@ -1,24 +1,187 @@
-# Lumen PHP Framework
+# To-do list REST Server
 
-[![Build Status](https://travis-ci.org/laravel/lumen-framework.svg)](https://travis-ci.org/laravel/lumen-framework)
-[![Total Downloads](https://img.shields.io/packagist/dt/laravel/framework)](https://packagist.org/packages/laravel/lumen-framework)
-[![Latest Stable Version](https://img.shields.io/packagist/v/laravel/framework)](https://packagist.org/packages/laravel/lumen-framework)
-[![License](https://img.shields.io/packagist/l/laravel/framework)](https://packagist.org/packages/laravel/lumen-framework)
+Uma aplicação de gestão de tarefas desenvolvido com framework Lumen 8 e PostgreSQL 10.
 
-Laravel Lumen is a stunningly fast PHP micro-framework for building web applications with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Lumen attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as routing, database abstraction, queueing, and caching.
+-------------------------------------------------------------------------
 
-## Official Documentation
+## API Documentation
 
-Documentation for the framework can be found on the [Lumen website](https://lumen.laravel.com/docs).
 
-## Contributing
+### GET /user
 
-Thank you for considering contributing to Lumen! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+```
+GET /user
+Content-Type: "application/json"
+```
+##### Returns:
 
-## Security Vulnerabilities
+```
+200 Ok
+Content-Type: "application/json"
 
-If you discover a security vulnerability within Lumen, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
+{
+    "sucesso": "Operação realiza com sucesso.",
+    "data": [
+        {
+            "id": 1,
+            "name": "Mollie Padberg PhD",
+            "email": "lweimann@example.org"
+        },
+        {
+            "id": 19,
+            "name": "Felipe",
+            "email": "felipe@gmail.com"
+        },
+    ]
+}
+```
 
-## License
+### GET /user/{id}
 
-The Lumen framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+```
+GET /user/{id}
+Content-Type: "application/json"
+```
+
+Attribute | Description
+----------| -----------
+**id**    | User id
+
+#### Returns
+
+```
+200 Ok
+Content-Type: "application/json"
+
+{
+    "sucesso": "Operação realiza com sucesso.",
+    "data": [
+        {
+            "id": 1,
+            "name": "Mollie Padberg PhD",
+            "email": "lweimann@example.org"
+        }
+    ]
+}
+```
+
+### POST /user
+
+```
+POST /user
+Content-Type: "application/json"
+
+{
+    "name": "Jonatas",
+    "email": "jonatas@mail.com.br",
+    "password": "12345678"
+}
+```
+##### Returns:
+
+```
+201 Created
+Content-Type: "application/json"
+
+{
+    "sucesso": "Usuário salvo com sucesso."
+}
+```
+
+### PUT /user/{id}
+
+```
+PUT /user/{id}
+Content-Type: "application/json"
+```
+
+Attribute | Description
+----------| -----------
+**id**    | User id
+
+#### Returns
+
+```
+201 Ok
+Content-Type: "application/json"
+
+{
+    "sucesso": "Usuário atualizado com sucesso."
+}
+```
+
+### DELETE /user/{id}
+
+```
+PUT /user/{id}
+Content-Type: "application/json"
+```
+
+Attribute | Description
+----------| -----------
+**id**    | User id
+
+#### Returns
+
+```
+201 Ok
+Content-Type: "application/json"
+
+{
+    "sucesso": "Usuário removido com sucesso."
+}
+```
+
+### GET user/{id}/task
+
+```
+GET user/{id}/task
+Content-Type: "application/json"
+```
+
+Attribute | Description
+----------| -----------
+**id**    | User id
+
+#### Returns
+
+```
+200 Ok
+Content-Type: "application/json"
+
+{
+    "sucesso": "Operação realiza com sucesso.",
+    "data": [
+        {
+            "id": 13,
+            "title": "Mrs.",
+            "description": "Dolore id animi illo officia itaque non. Aut occaecati quo ratione sed aut iusto laborum. Inventore voluptas unde molestias facere temporibus voluptas facilis.",
+            "priority": 2,
+            "status": "DONE",
+            "user_id": 4,
+            "created_at": "2021-07-03T19:33:06.000000Z",
+            "updated_at": "2021-07-03T19:33:06.000000Z"
+        },
+        {
+            "id": 14,
+            "title": "Mr.",
+            "description": "Ex et in corporis distinctio. Reprehenderit quia at nemo illum aliquam autem et. Velit voluptatum aliquam ut veritatis tempora ab dignissimos.",
+            "priority": 4,
+            "status": "DOING",
+            "user_id": 4,
+            "created_at": "2021-07-03T19:33:06.000000Z",
+            "updated_at": "2021-07-03T19:33:06.000000Z"
+        },
+        {
+            "id": 15,
+            "title": "Miss",
+            "description": "Quidem labore nisi sint nihil iste doloremque dolores. Qui ex ratione dolores dolor autem alias qui.",
+            "priority": 1,
+            "status": "TODO",
+            "user_id": 4,
+            "created_at": "2021-07-03T19:33:06.000000Z",
+            "updated_at": "2021-07-03T19:33:06.000000Z"
+        }
+    ]
+}
+```
